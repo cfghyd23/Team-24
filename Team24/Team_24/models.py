@@ -6,7 +6,7 @@ from rest_framework import serializers
 
 class login(models.Model):
     username = models.CharField(max_length=30)
-    email = models.EmailField(max_length=20)
+    password = models.CharField(max_length=20)
     class Meta:
         app_label = "Team_24"
 
@@ -17,5 +17,14 @@ class MyModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = login
         fields = '__all__'
+
+choices = ()
+
+class internRegister(models.Model):
+     fullname = models.CharField(max_length=20)
+     email = models.EmailField(max_length=20)
+     gender = 
+
+
 
 

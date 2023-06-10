@@ -1,5 +1,6 @@
 from django.db import models
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -18,12 +19,27 @@ class MyModelSerializer(serializers.ModelSerializer):
         model = login
         fields = '__all__'
 
-choices = ()
+
 
 class internRegister(models.Model):
-     fullname = models.CharField(max_length=20)
-     email = models.EmailField(max_length=20)
-     gender = 
+     firstname = models.CharField(max_length=20)
+     lastname = models.EmailField(max_length=20)
+     email = models.EmailField(max_length=30)
+     password = models.CharField(max_length=20)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    admin_remark = models.CharField(max_length=500,default="")
+    profile_image = models.ImageField(upload_to="profile_image/",blank=True)
+
+
+    def __str__(self):
+	    return self.user.username
+
+    
+
+
 
 
 

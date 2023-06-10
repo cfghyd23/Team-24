@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import logo from './1.jpg';
 import { Link } from "react-router-dom"
-import Success from './success';
+import Success from './success.jsx';
 
 const Form = () => {
   const [email, setEmail] = useState('');

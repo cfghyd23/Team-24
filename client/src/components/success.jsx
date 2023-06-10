@@ -1,7 +1,6 @@
 import React from "react";
 
 function Success() {
-
     return (
     <div class="jumbotron">
     <h1 class="display-4">Successfully Applied !</h1>

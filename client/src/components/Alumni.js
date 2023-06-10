@@ -5,14 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-import cardimg from '../images/cardimg.png';
+import cardimg from '../images/dp1.png';
 
 export default function ActionAreaCard() {
     const alumni = [
-        {id:1,personname:"akshay",image:"/images/dp1.png",perks:1000},
-        {id:2,personname:"arjun",image:"/images/dp1.png",perks:2000},
-        {id:3,personname:"akhil",image:"/images/dp1.png",perks:3000},
-        {id:3,personname:"arun",image:"/images/dp1.png",perks:5400},
+        {id:1,personname:"akshay",image:"../images/dp1.png",perks:1000},
+        {id:2,personname:"arjun",image:"../images/dp1.png",perks:2000},
+        {id:3,personname:"akhil",image:"../images/dp1.png",perks:3000},
+        {id:3,personname:"arun",image:"../images/dp1.png",perks:5400},
         
     ]
     alumni.sort((a, b) => b.perks - a.perks);

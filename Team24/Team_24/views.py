@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout as auth_logout,login as user_login
 from django.contrib.auth.models import User
 from .forms import ProfileEditForm,UserProfileEditForm
+from .models import login
 #from rest_framework import APIView
 
 

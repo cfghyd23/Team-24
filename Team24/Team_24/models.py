@@ -36,6 +36,29 @@ class Profile(models.Model):
 
     def __str__(self):
 	    return self.user.username
+    
+
+class hiringDetails(models.Model):
+    email = models.EmailField(max_length=20)
+    fullname = models.CharField(max_length=20)
+    options1 = (
+        (1, 'Male'),
+        (2, 'Female'),
+        (3, 'Others'),
+        (4, 'Prefer not to say'),
+    )
+    gender = models.IntegerField(choices=options1)
+    dob = models.DateField()
+    phonenumber = models.CharField(max_length=20)
+    state = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)  
+    education = models.CharField(max_length=20)
+    options2 = (
+        (1, 'In-Person'),
+        (2, 'Virtual'),
+    )
+    internshiprole = models.IntegerField(choices=options2)
+    tellusaboutyourself = models.CharField(max_length=20)
 
     
 

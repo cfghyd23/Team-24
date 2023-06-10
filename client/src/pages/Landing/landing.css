@@ -1,0 +1,12 @@
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 40px;
+    font-size: 30px;
+}
+
+.topSpan{
+    font-size: 40px;
+}

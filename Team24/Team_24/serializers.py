@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import login,hiringDetails,ProfileDashboard
+from .models import login,hiringDetails,ProfileDashboard,internRegister
 
 
 class MyModelSerializer(serializers.ModelSerializer):
@@ -86,17 +86,39 @@ class ProfileDashSerializer(serializers.ModelSerializer):
     )
 
       def update(self, instance, validated_data):
-     # Once the request data has been validated, we can update the todo item instance in the database
-        instance.email= validated_data.get('email', instance.email)
-        instance.fullname= validated_data.get('fullname', instance.fullname)
-        instance.funds= validated_data.get('funds', instance.funds)
-        
-
+         # Once the request data has been validated, we can update the todo item instance in the database
+        #instance.email= validated_data.get('email', instance.email)
+        #instance.fullname= validated_data.get('fullname', instance.fullname)
+        instance.funds += validated_data.get('funds')    
 
         instance.save()
         return instance
 
       class Meta:
         model = ProfileDashboard
+        fields = '__all__'
+ 
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+      firstname = serializers.CharField(max_length=1000, required=True)
+      lastname = serializers.CharField(max_length=1000, required=True)
+      email= serializers.EmailField(max_length=30,required=True)
+      password = serializers.CharField(max_length=1000, required=True)
+
+
+      def create(self, validated_data):
+    # Once the request data has been validated, we can create a todo item instance in the database
+        return internRegister.objects.create(
+        firstname=validated_data.get('firstname'), 
+        lastname=validated_data.get('lastname'),
+        email = validated_data.get('email'),
+        password=validated_data.get('password')
+        
+    )
+
+
+      class Meta:
+        model = internRegister
         fields = '__all__'
  

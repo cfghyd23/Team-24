@@ -1,5 +1,6 @@
 import React from 'react'
-import certificateMarpu from '../images/certificateMarpu.jpg'
+import certificateMarpu from '../../images/certificateMarpu.jpg'
+
 const Certificate = () => {
   return (
     <div>

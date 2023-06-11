@@ -6,7 +6,9 @@ const Userprofile = () => {
   return (
     <div>
         <Orientation />
+        <hr />
         <Piecharts />
+        <hr />
         <ProgressBar />
     </div>
   )

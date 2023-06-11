@@ -79,7 +79,8 @@ class ProfileDashSerializer(serializers.ModelSerializer):
       def create(self, validated_data):
     # Once the request data has been validated, we can create a todo item instance in the database
         return ProfileDashboard.objects.create(
-        email=validated_data.get('email'), fullname=validated_data.get('fullname'),
+        email=validated_data.get('email'), 
+        fullname=validated_data.get('fullname'),
         funds = validated_data.get('funds')
         
     )
@@ -89,6 +90,7 @@ class ProfileDashSerializer(serializers.ModelSerializer):
         instance.email= validated_data.get('email', instance.email)
         instance.fullname= validated_data.get('fullname', instance.fullname)
         instance.funds= validated_data.get('funds', instance.funds)
+        
 
 
         instance.save()

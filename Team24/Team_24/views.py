@@ -34,7 +34,7 @@ class loginListView(
 
   def get(self, request, id=None):
         if id:
-          queryset = login.objects.get(id=id)
+          queryset = login.objects.filter(id=id)
       # Serialize todo item from Django queryset object to JSON formatted data
           read_serializer = MyModelSerializer(queryset)
         
@@ -80,7 +80,7 @@ class HiringListView(
 
   def get(self, request, id=None):
         if id:
-          queryset = hiringDetails.objects.get(id=id)
+          queryset = hiringDetails.objects.filter(id=id)
       # Serialize todo item from Django queryset object to JSON formatted data
           read_serializer = HiringSerializer(queryset)
         
@@ -126,9 +126,11 @@ class ProfileListView(
     return Response(create_serializer.errors, status=400)
   
 
+  
+
   def get(self, request, id=None):
         if id:
-          queryset = ProfileDashboard.objects.get(id=id)
+          queryset = ProfileDashboard.objects.filter(id=id)
       # Serialize todo item from Django queryset object to JSON formatted data
           read_serializer = ProfileDashSerializer(queryset)
         
@@ -143,4 +145,11 @@ class ProfileListView(
 
     # Return a HTTP response object with the list of todo items as JSON
         return Response(read_serializer.data)
+  
+  def update(self,instance,validated_data):
+        current_funds = validated_data.get('funds')
+        instance.funds+=current_funds
+        instance.save()
+        return instance
+
   

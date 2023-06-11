@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './styles.css';
 import logo from './1.jpg';
 import { Link } from "react-router-dom"
@@ -17,7 +18,7 @@ const Form = () => {
   const [internshipRole, setInternshipRole] = useState('');
   const [aboutYou, setAboutYou] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
     console.log('Form submitted:', {
@@ -33,18 +34,39 @@ const Form = () => {
       internshipRole,
       aboutYou
     });
-    // Reset form fields
-    setEmail('');
-    setName('');
-    setGender('');
-    setDob('');
-    setPhone('');
-    setState('');
-    setCity('');
-    setEducation('');
-    setInternshipType('');
-    setInternshipRole('');
-    setAboutYou('');
+    const data = {
+      email,
+      name,
+      gender,
+      dob,
+      phone,
+      state,
+      city,
+      education,
+      internshipType,
+      internshipRole,
+      aboutYou
+    }
+    try{
+      const data = await axios.post('http://127.0.0.1:8000/hiring', {
+        email : email,
+        name : name,
+        gender : gender,
+        dob : dob,
+        phone : phone,
+        state : state,
+        city : city,
+        education : education,
+        internshiptype : internshipType,
+        internshiprole : internshipRole,
+        aboutyou: aboutYou
+      });
+      console.log(data);
+      window.location.replace('http://localhost:3000/userProfile');
+    }
+    catch(err){
+      console.log(err);
+    }
   };
 
   return (
@@ -214,8 +236,7 @@ const Form = () => {
           required
         />
       </label>
-
-      <button type="submit" className="form-submit-btn">Submit</button>
+      <button type="submit" className="form-submit-btn" onClick={handleSubmit}>Submit</button>
     </form>
     </>
   );

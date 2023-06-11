@@ -3,11 +3,16 @@ import { Chart } from 'react-google-charts';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import { useState } from 'react';
+import Certificate from './Certificate';
 
 const ProgreeBar = () => {
+ const handleClick = () => {
+    window.location.href = 'http://localhost:3000/certificate';
+ }
+
   var isButtonEnabled = false; // Your boolean variable
   var threshold = 20000;
-  const [funds,setFunds] = useState(300);
+  const [funds,setFunds] = useState(30000);
   const gaugeData = [
     ['Label', 'Value'],
     ['Progress', funds],
@@ -19,8 +24,8 @@ const ProgreeBar = () => {
   return (
     <div >
       <Typography  variant="h6"  style={{ fontFamily: 'Arial', fontWeight: 'bold', marginTop: '2rem' }}>
-                        Progress chart
-                    </Typography>
+        Progress chart
+      </Typography>
       <div >
         <Chart
           width={600}
@@ -37,12 +42,17 @@ const ProgreeBar = () => {
           }}
           rootProps={{ 'data-testid': '1' }}
         />
+        
       </div>
       <div style={{marginTop:'2rem',}}>
-        <Button disabled={!isButtonEnabled} variant="contained">
+        <Button onClick={handleClick} disabled={!isButtonEnabled} variant="contained">
           Certificate
         </Button>
       </div>
+      <div>
+            Perks : 50 points
+            Goodies : T-shirt from the Marpu Foundation
+        </div>
     </div>
 
   );

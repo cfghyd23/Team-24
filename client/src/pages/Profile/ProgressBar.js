@@ -7,7 +7,7 @@ import { useState } from 'react';
 const ProgreeBar = () => {
   var isButtonEnabled = false; // Your boolean variable
   var threshold = 20000;
-  const [funds,setFunds] = useState(300);
+  const [funds,setFunds] = useState(3000);
   const gaugeData = [
     ['Label', 'Value'],
     ['Progress', funds],
@@ -37,12 +37,17 @@ const ProgreeBar = () => {
           }}
           rootProps={{ 'data-testid': '1' }}
         />
+        
       </div>
       <div style={{marginTop:'2rem',}}>
         <Button disabled={!isButtonEnabled} variant="contained">
           Certificate
         </Button>
       </div>
+      <div>
+            Perks : 50 points
+            Goodies : T-shirt from the Marpu Foundation
+        </div>
     </div>
 
   );

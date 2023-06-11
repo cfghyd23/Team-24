@@ -5,6 +5,20 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 export default function ContactUs() {
+  const handleFacebook = () => {
+    window.location.replace('https://www.facebook.com/marpufoundation/');
+  }
+  const handleTwitter = () => {
+    window.location.replace('https://twitter.com/marpu_ngo?lang=en');
+  }
+  const handleInsta = () => {
+    window.location.replace('https://www.instagram.com/explore/locations/852228445120429/marpu-foundation/');
+  }
+  const handleWhatsapp = () => {
+    window.location.replace('https://www.marpu.org/');
+  }
+
+
   return (
     <div className='contactus'>
         <div className='contactus-first'>
@@ -16,10 +30,10 @@ export default function ContactUs() {
             <p><i className="support-Icon fa-solid fa-message"></i>Connect for support</p>
         </div>
         <div className="contactus-third">
-          <FacebookIcon className="contactus-Icon" />
-          <TwitterIcon className="contactus-Icon" />
-          <InstagramIcon className="contactus-Icon" />
-          <WhatsAppIcon className="contactus-Icon" />
+          <FacebookIcon className="contactus-Icon" onClick={handleFacebook} />
+          <TwitterIcon className="contactus-Icon"  onClick={handleTwitter}/>
+          <InstagramIcon className="contactus-Icon" onClick={handleInsta}/>
+          <WhatsAppIcon className="contactus-Icon" onClick={handleWhatsapp}/>
       </div>
 
     </div>

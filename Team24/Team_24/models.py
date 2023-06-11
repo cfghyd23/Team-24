@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class login(models.Model):
+    id = models.AutoField(
+    primary_key=True
+  )
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=20)
     class Meta:
@@ -40,6 +43,9 @@ class Profile(models.Model):
     
 
 class hiringDetails(models.Model):
+    id = models.AutoField(
+    primary_key=True
+  )
     email = models.EmailField(max_length=20)
     fullname = models.CharField(max_length=20)
     options1 = (
@@ -61,6 +67,8 @@ class hiringDetails(models.Model):
     internshiprole = models.IntegerField(choices=options2)
     tellusaboutyourself = models.CharField(max_length=20)
 
+
+#class profileDashboard()
     
 
 

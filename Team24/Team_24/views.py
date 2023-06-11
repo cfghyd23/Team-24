@@ -1,54 +1,51 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import logout as auth_logout,login as user_login
-from django.contrib.auth.models import User
-from .forms import ProfileEditForm,UserProfileEditForm
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
+
 from .models import login
-#from rest_framework import APIView
+from .serializers import MyModelSerializer
 
 
+class loginListView(
+  APIView, # Basic View class provided by the Django Rest Framework
+  UpdateModelMixin, # Mixin that allows the basic APIView to handle PUT HTTP requests
+  DestroyModelMixin, # Mixin that allows the basic APIView to handle DELETE HTTP requests
+):
 
-#class MyModelView(APIView):
- #   def post(self, request):
-  #      serializer = MyModelSerializer(data=request.data)
-   #     if serializer.is_valid():
-    #        serializer.save()  # Save the validated data to the database
-     #       return Response(serializer.data, status=status.HTTP_201_CREATED)
-      #  return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+  def post(self, request):
+        # Pass JSON data from user POST request to serializer for validation
+    create_serializer = MyModelSerializer(data=request.data)
 
-#login view
+    # Check if user POST data passes validation checks from serializer
+    if create_serializer.is_valid():
 
-@login
-def dashboard(request):
-	if request.user.is_staff:
-		return render(request,'dashboard.html',{'interns':User.objects.filter(is_staff = False),'total_interns':User.objects.filter(is_staff = False).count()})
-	else:
-		return redirect('account_profile',username=request.user.username)
-	
+      # If user data is valid, create a new todo item record in the database
+      todo_item_object = create_serializer.save()
 
-@login
-def profile(request,username):
-	return render(request,'profile.html',{'userdata':User.objects.get(username=username)})
+      # Serialize the new todo item from a Python object to JSON format
+      read_serializer = MyModelSerializer(todo_item_object)
 
-@login
-def edit_profile(request,username):
-	if request.method == "POST":
-		form = ProfileEditForm(request.POST,instance=request.user)
-		profile_form = UserProfileEditForm(request.POST, request.FILES,instance = request.user.profile)
-		if form.is_valid() and profile_form.is_valid():
-			form.save()
-			profile_form.save()
-			return redirect('account_profile',username=username)
-	else:
-		form = ProfileEditForm(instance=request.user)
-		profile_form = UserProfileEditForm(instance = request.user.profile)
-	return render(request,'profile/edit_profile.html',{'form':form,'profile':profile_form})
+      # Return a HTTP response with the newly created todo item data
+      return Response(read_serializer.data, status=201)
 
+    # If the users POST data is not valid, return a 400 response with an error message
+    return Response(create_serializer.errors, status=400)
+  
 
-# Create your views here.
+  def get(self, request, id=None):
+        if id:
+          queryset = login.objects.get(id=id)
+      # Serialize todo item from Django queryset object to JSON formatted data
+          read_serializer = MyModelSerializer(queryset)
+        
+          read_serializer = MyModelSerializer(queryset)
 
+        else:
+      # Get all todo items from the database using Django's model ORM
+          queryset = login.objects.all()
 
+      # Serialize list of todos item from Django queryset object to JSON formatted data
+        read_serializer = MyModelSerializer(queryset, many=True)
 
-
+    # Return a HTTP response object with the list of todo items as JSON
+        return Response(read_serializer.data)

@@ -14,6 +14,7 @@ class login(models.Model):
     def __str__(self):
         return self.username
     
+    
 class MyModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = login

@@ -14,7 +14,7 @@ export const options = {
   title: "Total Fund raise",
 };
 
-export function PieChart() {
+export default function PieChart() {
   return (
     <Chart
       chartType="PieChart"

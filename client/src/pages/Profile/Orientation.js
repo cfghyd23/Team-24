@@ -5,6 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 
 const Orientation = () => {
+
+    const handleClick = () => {
+        window.location.href = "https://zoom.us";
+      }
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
             <Card sx={{ maxWidth: 500, backgroundColor: '#FFFDD0', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
@@ -31,9 +36,7 @@ const Orientation = () => {
                         contact@marpu.org with your details and proposal.
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                        <Link  to={{ pathname: "https://zoom.us/" }} >
-                            <Button variant="contained" >Zoom Link</Button>
-                        </Link>
+                        <Button variant="contained" onClick={handleClick} >Zoom Link</Button>
                     </div>
                 </CardContent>
             </Card>

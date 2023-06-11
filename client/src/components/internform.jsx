@@ -214,8 +214,9 @@ const Form = () => {
           required
         />
       </label>
-
+      <Link to={'/userprofile'}>
       <button type="submit" className="form-submit-btn">Submit</button>
+      </Link>
     </form>
     </>
   );

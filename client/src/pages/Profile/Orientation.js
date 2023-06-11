@@ -31,7 +31,9 @@ const Orientation = () => {
                         contact@marpu.org with your details and proposal.
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                        <Button variant="contained" >Zoom Link</Button>
+                        <Link  to={{ pathname: "https://zoom.us/" }} >
+                            <Button variant="contained" >Zoom Link</Button>
+                        </Link>
                     </div>
                 </CardContent>
             </Card>

@@ -1,6 +1,7 @@
 from django.db import models
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 
 # Create your models here.
@@ -10,7 +11,11 @@ class login(models.Model):
     primary_key=True
   )
     username = models.CharField(max_length=30)
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=1200)
+
+    def save(self,*args,**kwargs):
+         self.password = make_password(self.password)
+         super(login,self).save(*args,**kwargs)
     class Meta:
         app_label = "Team_24"
 
@@ -30,6 +35,11 @@ class internRegister(models.Model):
      lastname = models.EmailField(max_length=20)
      email = models.EmailField(max_length=30)
      password = models.CharField(max_length=20)
+     
+     def save(self,*args,**kwargs):
+         self.password = make_password(self.password)
+         super(internRegister,self).save(*args,**kwargs)
+
 
 
 class ProfileDashboard(models.Model):
@@ -38,8 +48,6 @@ class ProfileDashboard(models.Model):
     funds = models.IntegerField()
 
 
-    def __str__(self):
-	    return self.user.username
     
 
 class hiringDetails(models.Model):

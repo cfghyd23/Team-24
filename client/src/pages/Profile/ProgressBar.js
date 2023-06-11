@@ -3,8 +3,13 @@ import { Chart } from 'react-google-charts';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import { useState } from 'react';
+import Certificate from './Certificate';
 
 const ProgreeBar = () => {
+//  function handleClick() {
+//     window.location.href = 
+//  }
+
   var isButtonEnabled = false; // Your boolean variable
   var threshold = 20000;
   const [funds,setFunds] = useState(3000);
@@ -40,7 +45,7 @@ const ProgreeBar = () => {
         
       </div>
       <div style={{marginTop:'2rem',}}>
-        <Button disabled={!isButtonEnabled} variant="contained">
+        <Button onSubmit={handleclick} disabled={!isButtonEnabled} variant="contained">
           Certificate
         </Button>
       </div>

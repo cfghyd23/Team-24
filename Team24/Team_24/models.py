@@ -32,10 +32,10 @@ class internRegister(models.Model):
      password = models.CharField(max_length=20)
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    admin_remark = models.CharField(max_length=500,default="")
-    profile_image = models.ImageField(upload_to="profile_image/",blank=True)
+class ProfileDashboard(models.Model):
+    fullname = models.CharField(max_length=20)
+    email = models.EmailField(max_length=30)
+    funds = models.IntegerField()
 
 
     def __str__(self):
@@ -68,7 +68,7 @@ class hiringDetails(models.Model):
     tellusaboutyourself = models.CharField(max_length=20)
 
 
-#class profileDashboard()
+
     
 
 

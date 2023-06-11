@@ -7,6 +7,7 @@ urlpatterns = [
   path('login/', views.loginListView.as_view()),
   path('login/<int:id>/', views.loginListView.as_view()),
   path('hiring/',views.HiringListView.as_view()),
+  path('profileDashboard/',views.ProfileListView.as_view()),
 
 
 ]
